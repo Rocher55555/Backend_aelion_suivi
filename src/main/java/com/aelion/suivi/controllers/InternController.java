@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.suivi.dto.InternShortListDto;
@@ -29,7 +30,7 @@ import com.aelion.suivi.services.InternService;
 
 @RestController
 @RequestMapping("/intern")
-public class Intern {
+public class InternController {
 	
 	@Autowired
 	private InternService internService;
@@ -47,12 +48,13 @@ public class Intern {
 	}
 	
 	@GetMapping("/{id}")
+	@CrossOrigin
 	public ResponseEntity<?> findOne(@PathVariable Long id) {
 		Optional<InternEntity> oInternEntity= this.internService.findOne(id);
 		if(oInternEntity.isPresent()) {
 			return ResponseEntity.ok(oInternEntity.get());
 		}
-		return (ResponseEntity<?>) ResponseEntity.notFound().build();
+		return ResponseEntity.notFound().build();
 	}
 	
 	/**
@@ -99,41 +101,32 @@ public class Intern {
 	}
 	
 	
-	
-	
 	@GetMapping("/byfirstname/{firstname}")
 	public List<InternEntity> findByFirstname(@PathVariable String firstname){
 		return internService.findByFirstname(firstname);
 	}
 	
 	
+	//EMAIL
 	
 	
 	
 	
+	@GetMapping("byemail")
+	public ResponseEntity<?> internByMail(@RequestParam() String email) {
+		return this.internService.internByMail(email);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/*
+	@GetMapping("byemail")
+	public ResponseEntity<?> internByMail(@RequestParam() String email) {
+		Optional<InternEntity> oInternEntity= this.internService.internByMail(email);
+		if(oInternEntity.isPresent()) {
+			return ResponseEntity.ok(oInternEntity.get());
+		}
+		return ResponseEntity.notFound().build();
+	}
+*/
+
 	
 }

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.aelion.suivi.dto.InternShortListDto;
 import com.aelion.suivi.entities.InternEntity;
 import com.aelion.suivi.repositories.InternRepository;
@@ -27,7 +27,7 @@ public class InternService implements ICrud<InternEntity> {
 	private InternRepository repository;
 	
 	/**
-	 * INSERT INNTO inter (name, firtname, ..., address) VALUES(...);
+	 * INSERT INNTO intern (name, firstname, ..., address) VALUES(...);
 	 */
 	@Override
 	public InternEntity add(InternEntity t) {
@@ -84,42 +84,38 @@ public class InternService implements ICrud<InternEntity> {
 		return this.repository.findByName(name);
 	}
 	
-	
-	
 
-	
 	
 	public List<InternEntity> findByFirstname(String firstname){
-		return repository.findByFirstname(firstname);
+		return this.repository.findByFirstname(firstname);
 	}
 	
+	/*
+	public Optional<InternEntity> internByMail(String email) {
+		return Optional.ofNullable(this.repository.internByMail(email));
+	}
+	*/
 	
+	/* FAUX DA CANCELLARE
+	public ResponseEntity<?> internByMail(String email) {
+		Optional<InternEntity> oInternEntity = this.repository.internByMail(email);
+		if(oInternEntity.isPresent()) {
+			return ResponseEntity.ok(oInternEntity.get());
+		}
+		return (ResponseEntity<?>)ResponseEntity.notFound().build();	
+		}
+	*/
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public ResponseEntity<?> internByMail(String email) {
+		InternEntity entity = this.repository.internByMail(email);
+		if(entity == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(entity);	
+		}
+
 	
 
 	
+	}
 	
-	
-	
-	
-
-}
