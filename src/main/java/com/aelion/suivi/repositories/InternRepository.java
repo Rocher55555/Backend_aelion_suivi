@@ -33,8 +33,24 @@ public interface InternRepository extends CrudRepository<InternEntity, Long> {
 	public List<InternEntity> findByName(String name);
 	public List<InternEntity>findByFirstname(String firstname);
 	
-	@Query("SELECT i FROM InternEntity i WHERE i.email= :email")
+	/**
+	 * JPQL
+	 * ON travaille avec les attributs et les entités (class et attribut)
+	 * @param email
+	 * @return
+	 */
+	@Query("SELECT i FROM InternEntity i WHERE i.email= :email")              
 	public InternEntity internByMail(@Param("email")String email);
+	
+	/**
+	 * Native : on travaille avec
+	 * ON travaille avec le noms des tables et les colonnestable(sql)
+	 * @param email
+	 * @return
+	 */
+	@Query(value="SELECT * FROM Intern WHERE email = :email", nativeQuery=true)              
+	public InternEntity nativeinternByMail(@Param("email")String email);
+	
 	
 	
 }
