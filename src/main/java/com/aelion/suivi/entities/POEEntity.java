@@ -37,9 +37,11 @@ public class POEEntity {
 	
 
 	@ManyToMany()
-    @JoinTable(name = "interns_to_poes", joinColumns = @JoinColumn(name = "poe_id"),
-    inverseJoinColumns = @JoinColumn(name = "intern_id"))
-    
+    @JoinTable(
+    		name = "interns_to_poes",
+    		joinColumns = @JoinColumn(name = "poe_id"),
+    		inverseJoinColumns = @JoinColumn(name = "intern_id")
+    		)
     private List<InternEntity> interns = new ArrayList<>();
 	
 	

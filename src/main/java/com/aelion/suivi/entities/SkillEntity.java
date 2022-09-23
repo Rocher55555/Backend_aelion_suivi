@@ -30,8 +30,8 @@ public class SkillEntity {
 	private String title;  //colonne
 	
 	private String description;
-
 	
+
 	
 	/**
 	 * @return the title

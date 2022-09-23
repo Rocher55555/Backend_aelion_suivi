@@ -63,6 +63,7 @@ public class InternController {
 	 * @return http://status  (201)
 	 */
 	@PostMapping()
+	@CrossOrigin
 	public InternEntity add(@RequestBody InternEntity intern) {
 		return this.internService.add(intern);
 	}

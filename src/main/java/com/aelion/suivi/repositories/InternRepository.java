@@ -44,7 +44,7 @@ public interface InternRepository extends CrudRepository<InternEntity, Long> {
 	
 	/**
 	 * Native : on travaille avec
-	 * ON travaille avec le noms des tables et les colonnestable(sql)
+	 * ON travaille avec le nom des tables et les colonnes table(sql)
 	 * @param email
 	 * @return
 	 */

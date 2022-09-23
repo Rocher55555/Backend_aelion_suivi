@@ -30,8 +30,8 @@ public class InternService implements ICrud<InternEntity> {
 	 * INSERT INNTO intern (name, firstname, ..., address) VALUES(...);
 	 */
 	@Override
-	public InternEntity add(InternEntity t) {
-		return this.repository.save(t);
+	public InternEntity add(InternEntity intern) {
+		return this.repository.save(intern);
 	}
 
 	@Override
