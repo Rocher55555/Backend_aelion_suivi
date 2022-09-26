@@ -10,9 +10,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.aelion.suivi.dto.InternInputDto;
 import com.aelion.suivi.dto.InternShortListDto;
 import com.aelion.suivi.entities.InternEntity;
+import com.aelion.suivi.entities.POEEntity;
 import com.aelion.suivi.repositories.InternRepository;
+import com.aelion.suivi.repositories.POERepository;
 
 /**
  * @author Aelion
@@ -25,6 +29,9 @@ public class InternService implements ICrud<InternEntity> {
 
 	@Autowired
 	private InternRepository repository;
+	//injection la dépendance de poeRepository pour ce service
+	@Autowired
+	private POERepository poeRepository;
 	
 	/**
 	 * INSERT INNTO intern (name, firstname, ..., address) VALUES(...);
@@ -113,6 +120,33 @@ public class InternService implements ICrud<InternEntity> {
 		}
 		return ResponseEntity.ok(entity);	
 		}
+
+	
+		public InternEntity addInternAndPoes(InternInputDto internDto) {
+			InternEntity intern = new InternEntity();
+			intern.setAddress(internDto.address);
+			intern.setBirthDate(internDto.birthDate);
+			intern.setEmail(internDto.email);
+			intern.setFirstname(internDto.firstname);
+			intern.setName(internDto.name);
+			intern.setPhoneNumber(internDto.phoneNumber);
+			// Persists intern
+			this.repository.save(intern);
+			// Persists POEs with the new Intern
+			//je prends la list poes d'internDto , je la parcours
+			internDto.poes.forEach(inputPoe -> {
+				Optional<POEEntity> oPoe = this.poeRepository.findById(inputPoe.getId());
+				//si poe cochée est trouvée via l'id de la BD
+				if (oPoe.isPresent()) {
+					POEEntity poe = oPoe.get();
+					//...alors j'ajoouter l'intern à la poe et je les 'save'
+					poe.addIntern(intern);
+					this.poeRepository.save(poe);
+				}
+			});
+			return intern;
+		}
+
 
 	
 

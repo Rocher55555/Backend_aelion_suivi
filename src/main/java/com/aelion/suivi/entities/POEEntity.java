@@ -44,7 +44,10 @@ public class POEEntity {
     		)
     private List<InternEntity> interns = new ArrayList<>();
 	
-	
+	//je prends la list d'interns et j'ajoute un intern
+	public void addIntern(InternEntity intern) {
+		interns.add(intern);
+	}
 	
 	/**
 	 * @return the interns
