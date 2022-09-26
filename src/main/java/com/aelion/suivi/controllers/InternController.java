@@ -78,9 +78,7 @@ public class InternController {
 	@PostMapping()
 	@CrossOrigin
 	public InternEntity add(@RequestBody InternInputDto intern) {
-	return this.internService.addInternAndPoes(intern);
-
-	
+	return this.internService.addInternAndPoes(intern);	
 }
 	
 	
@@ -129,7 +127,8 @@ public class InternController {
 	
 	
 	
-	@GetMapping("byemail")
+	@GetMapping("/byemail")
+	@CrossOrigin
 	public ResponseEntity<?> internByMail(@RequestParam() String email) {
 		return this.internService.internByMail(email);
 	}

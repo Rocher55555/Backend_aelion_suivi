@@ -21,5 +21,6 @@ public final class InternInputDto {
 		public String phoneNumber = "";
 		public String email = "";
 		public String address = "";
+
 		public List<POEEntity> poes = new ArrayList<>();
 }

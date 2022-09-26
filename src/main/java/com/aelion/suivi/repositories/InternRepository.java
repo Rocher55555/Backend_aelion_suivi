@@ -33,6 +33,7 @@ public interface InternRepository extends CrudRepository<InternEntity, Long> {
 	public List<InternEntity> findByName(String name);
 	public List<InternEntity>findByFirstname(String firstname);
 	
+	
 	/**
 	 * JPQL
 	 * ON travaille avec les attributs et les entités (class et attribut)
@@ -41,6 +42,8 @@ public interface InternRepository extends CrudRepository<InternEntity, Long> {
 	 */
 	@Query("SELECT i FROM InternEntity i WHERE i.email= :email")              
 	public InternEntity internByMail(@Param("email")String email);
+	
+	
 	
 	/**
 	 * Native : on travaille avec
