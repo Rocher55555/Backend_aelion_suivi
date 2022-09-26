@@ -42,11 +42,12 @@ public class POEEntity {
     		joinColumns = @JoinColumn(name = "poe_id"),
     		inverseJoinColumns = @JoinColumn(name = "intern_id")
     		)
+	
     private List<InternEntity> interns = new ArrayList<>();
 	
 	//je prends la list d'interns et j'ajoute un intern
 	public void addIntern(InternEntity intern) {
-		interns.add(intern);
+		this.interns.add(intern);
 	}
 	
 	/**
