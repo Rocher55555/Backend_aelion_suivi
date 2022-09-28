@@ -36,6 +36,7 @@ public class POEEntity {
 	private POETypeEntity poeType;
 	
 
+	//creation de table intern-to-poe
 	@ManyToMany()
     @JoinTable(
     		name = "interns_to_poes",
@@ -48,6 +49,13 @@ public class POEEntity {
 	//je prends la list d'interns et j'ajoute un intern
 	public void addIntern(InternEntity intern) {
 		this.interns.add(intern);
+	}
+	
+	/**
+	 * @return nothig
+	 */
+	public void deleteIntern(InternEntity intern) {
+		this.interns.remove(intern);
 	}
 	
 	/**
@@ -136,6 +144,8 @@ public class POEEntity {
 	public void setPoeType(POETypeEntity poeType) {
 		this.poeType = poeType;
 	}
+	
+
 	
 	
 }

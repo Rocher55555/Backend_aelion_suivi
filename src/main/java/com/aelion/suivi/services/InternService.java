@@ -147,13 +147,13 @@ public class InternService implements ICrud<InternEntity> {
 			intern.setPhoneNumber(internDto.phoneNumber);
 			
 			// Persists intern
-			this.repository.save(intern);   // on faire pesister l'objet inter dans la BD
+			this.repository.save(intern);                 // on faire persister l'objet inter dans la BD
 			
 			// Persists POEs with the new Intern
 			//je prends la list poes d'internDto , je la parcours
 			internDto.poes.forEach(inputPoe -> {
 				Optional<POEEntity> oPoe = this.poeRepository.findById(inputPoe.getId());
-				//si poe cochée est trouvée via l'id de la BD
+				//si poe cochéee est trouvée via l'id de la BD
 				if (oPoe.isPresent()) {
 					POEEntity poe = oPoe.get();
 					//...alors j'ajoute l'intern à la poe et je les 'save'
@@ -163,6 +163,29 @@ public class InternService implements ICrud<InternEntity> {
 			});
 			return intern;
 		}
+	
+		//delete
+		/*public void deleteInternAndPoes(InternInputDto internDto) {
+
+			InternEntity intern = this.repository.deleteById(internDto.id);
+			
+			// delete intern
+			this.repository.delete(intern); 
+			
+			// delete POEs with the new Intern
+			//je prends la list poes d'internDto , je la parcours
+			internDto.poes.forEach(inputPoe -> {
+				Optional<POEEntity> oPoe = this.poeRepository.findById(inputPoe.getId());
+				//si poe cochéee est trouvée via l'id de la BD
+				if (oPoe.isPresent()) {
+					POEEntity poe = oPoe.get();
+					//...alors j'ajoute l'intern à la poe et je les 'save'
+					poe.addIntern(intern);
+					this.poeRepository.save(poe);
+				}
+			});
+			//return intern;
+		}*/
 
 
 	
