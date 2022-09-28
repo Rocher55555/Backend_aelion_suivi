@@ -3,13 +3,19 @@
  */
 package com.aelion.suivi.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 /**
  * @author Aelion
@@ -26,6 +32,48 @@ public class POEEntity {
 	private Date beginDate;
 	private Date endDate;
 	
+	@ManyToOne()                             //plusieurs POE pour un type
+	private POETypeEntity poeType;
+	
+
+	//creation de table intern-to-poe
+	@ManyToMany()
+    @JoinTable(
+    		name = "interns_to_poes",
+    		joinColumns = @JoinColumn(name = "poe_id"),
+    		inverseJoinColumns = @JoinColumn(name = "intern_id")
+    		)
+	
+    private List<InternEntity> interns = new ArrayList<>();
+	
+	//je prends la list d'interns et j'ajoute un intern
+	public void addIntern(InternEntity intern) {
+		this.interns.add(intern);
+	}
+	
+	/**
+	 * @return nothig
+	 */
+	public void deleteIntern(InternEntity intern) {
+		this.interns.remove(intern);
+	}
+	
+	/**
+	 * @return the interns
+	 */
+	public List<InternEntity> getInterns() {
+		return interns;
+	}
+
+
+	/**
+	 * @param interns the interns to set
+	 */
+	public void setInterns(List<InternEntity> interns) {
+		this.interns = interns;
+	}
+
+
 	/**
 	 * @return the id
 	 */
@@ -78,11 +126,26 @@ public class POEEntity {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
 
 	
+	//POE ENTITY GETTERS AND SETTERS
+
+	/**
+	 * @return the poeType
+	 */
+	public POETypeEntity getPoeType() {
+		return poeType;
+	}
+
+
+	/**
+	 * @param poeType the poeType to set
+	 */
+	public void setPoeType(POETypeEntity poeType) {
+		this.poeType = poeType;
+	}
 	
+
 	
 	
 }

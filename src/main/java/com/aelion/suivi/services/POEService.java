@@ -72,7 +72,7 @@ public class POEService implements ICrud<POEEntity> {
 		return this.repository.findById(id.intValue());
 	}
 	
-	//get ONe pour faire differenment
+	//get One pour faire differenment
 	public POEEntity getOne(Long id) throws Exception {   // foit retourner un POEEntity
 		Optional<POEEntity> oEntity = this.repository.findById(id.intValue());
 		

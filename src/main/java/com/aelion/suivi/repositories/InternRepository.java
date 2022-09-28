@@ -2,7 +2,9 @@ package com.aelion.suivi.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.aelion.suivi.entities.InternEntity;
 
@@ -30,6 +32,28 @@ public interface InternRepository extends CrudRepository<InternEntity, Long> {
 	
 	public List<InternEntity> findByName(String name);
 	public List<InternEntity>findByFirstname(String firstname);
+	
+	
+	/**
+	 * JPQL
+	 * ON travaille avec les attributs et les entités (class et attribut)
+	 * @param email
+	 * @return
+	 */
+	@Query("SELECT i FROM InternEntity i WHERE i.email= :email")              
+	public InternEntity internByMail(@Param("email")String email);
+	
+	
+	
+	/**
+	 * Native : on travaille avec
+	 * ON travaille avec le nom des tables et les colonnes table(sql)
+	 * @param email
+	 * @return
+	 */
+	@Query(value="SELECT * FROM Intern WHERE email = :email", nativeQuery=true)              
+	public InternEntity nativeinternByMail(@Param("email")String email);
+	
 	
 	
 }
