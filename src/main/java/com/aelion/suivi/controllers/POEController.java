@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,17 +38,20 @@ public class POEController {
 
 	
 	@GetMapping("/hello")
+	@CrossOrigin()
 	public ResponseEntity<String> greetings(){
 		return ResponseEntity.ok("Hey springBoot");
 	}
 	
 	 @GetMapping()
+	 @CrossOrigin()
 	 public List<POEEntity> findAll(){
 		 return this.poeService.findAll();
 	 }
 	 
 	 
 	 @GetMapping("/{id}")
+	 @CrossOrigin()
 	 public ResponseEntity<?> findOne(@PathVariable int id) throws Exception{
 		 try {
 			return ResponseEntity.ok(this.poeService.getOne((long) id));
@@ -60,6 +64,7 @@ public class POEController {
 	
 
 	@PostMapping()
+	@CrossOrigin()
 	public POEEntity add(@RequestBody POEEntity poe) {
 		return this.poeService.add(poe);
 	}
@@ -67,6 +72,7 @@ public class POEController {
 
 
 	@DeleteMapping("/{id}")
+	@CrossOrigin()
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
             this.poeService.delete((long)id);
@@ -78,7 +84,8 @@ public class POEController {
         }
     }
 
-	@PutMapping()	
+	@PutMapping()
+	@CrossOrigin()
 	public ResponseEntity<?> update(@RequestBody POEEntity poe) {
 		this.poeService.update(poe);
 		return ResponseEntity.noContent().build();
@@ -86,6 +93,7 @@ public class POEController {
 	
 	
 	@GetMapping("/shortlist")
+	@CrossOrigin()
 	public List<POEShortListDto>shortList(){
 		return this.poeService.shortList();
 	}

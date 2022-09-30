@@ -34,19 +34,23 @@ public class Intern {
 	@Autowired
 	private InternService internService;
 	
+	
 	@GetMapping("/hello")
+	@CrossOrigin()
 	public ResponseEntity<String> greetings(){
 		return ResponseEntity.ok("Hello springBoot");
 	}
 	
 	
 	@GetMapping()
-	@CrossOrigin
+	@CrossOrigin()
 	public List<InternEntity> findAll() {
 		return this.internService.findAll();
 	}
 	
+	
 	@GetMapping("/{id}")
+	@CrossOrigin()
 	public ResponseEntity<?> findOne(@PathVariable Long id) {
 		Optional<InternEntity> oInternEntity= this.internService.findOne(id);
 		if(oInternEntity.isPresent()) {
@@ -61,6 +65,7 @@ public class Intern {
 	 * @return http://status  (201)
 	 */
 	@PostMapping()
+	@CrossOrigin()
 	public InternEntity add(@RequestBody InternEntity intern) {
 		return this.internService.add(intern);
 	}
@@ -82,18 +87,21 @@ public class Intern {
 	 * @param intern
 	 * @return http://status  (201)
 	 */
-	@PutMapping()	
+	@PutMapping()
+	@CrossOrigin()
 	public ResponseEntity<?> update(@RequestBody InternEntity intern) {
 		this.internService.update(intern);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/shortlist")
+	@CrossOrigin()
 	public List<InternShortListDto>shortList(){
 		return this.internService.shortList();
 	}
 	
 	@GetMapping("/byname/{name}")
+	@CrossOrigin()
 	public List<InternEntity> findByName(@PathVariable String name){
 		return this.internService.findByName(name);
 	}
@@ -102,6 +110,7 @@ public class Intern {
 	
 	
 	@GetMapping("/byfirstname/{firstname}")
+	@CrossOrigin()
 	public List<InternEntity> findByFirstname(@PathVariable String firstname){
 		return internService.findByFirstname(firstname);
 	}
