@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aelion.suivi.dto.InternInputDto;
 import com.aelion.suivi.dto.InternShortListDto;
 import com.aelion.suivi.entities.InternEntity;
 import com.aelion.suivi.services.InternService;
@@ -29,7 +31,7 @@ import com.aelion.suivi.services.InternService;
 
 @RestController
 @RequestMapping("/intern")
-public class Intern {
+public class InternController {
 	
 	@Autowired
 	private InternService internService;
@@ -56,7 +58,7 @@ public class Intern {
 		if(oInternEntity.isPresent()) {
 			return ResponseEntity.ok(oInternEntity.get());
 		}
-		return (ResponseEntity<?>) ResponseEntity.notFound().build();
+		return ResponseEntity.notFound().build();
 	}
 	
 	/**
@@ -64,11 +66,30 @@ public class Intern {
 	 * @param intern
 	 * @return http://status  (201)
 	 */
+	//@PostMapping()
+	//@CrossOrigin
+	//public InternEntity add(@RequestBody InternEntity intern) {
+	//	return this.internService.add(intern);
+	//}
+	
+	
+	/**
+	 * ADD POES TO INTERN
+	 * @param InternInputDto
+	 * @return 201 http-status
+	 */
 	@PostMapping()
 	@CrossOrigin()
 	public InternEntity add(@RequestBody InternEntity intern) {
 		return this.internService.add(intern);
 	}
+
+	@CrossOrigin()
+	public InternEntity add(@RequestBody InternInputDto intern) {
+	return this.internService.addInternAndPoes(intern);	
+}
+	
+
 	
 	/**
 	 * @param 
@@ -107,8 +128,6 @@ public class Intern {
 	}
 	
 	
-	
-	
 	@GetMapping("/byfirstname/{firstname}")
 	@CrossOrigin()
 	public List<InternEntity> findByFirstname(@PathVariable String firstname){
@@ -116,33 +135,29 @@ public class Intern {
 	}
 	
 	
+	//EMAIL
 	
 	
 	
 	
+	@GetMapping("/byemail")
+	@CrossOrigin
+	public ResponseEntity<?> internByMail(@RequestParam() String email) {
+		return this.internService.internByMail(email);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/*
+	@GetMapping("byemail")
+	public ResponseEntity<?> internByMail(@RequestParam() String email) {
+		Optional<InternEntity> oInternEntity= this.internService.internByMail(email);
+		if(oInternEntity.isPresent()) {
+			return ResponseEntity.ok(oInternEntity.get());
+		}
+		return ResponseEntity.notFound().build();
+	}
+*/
 	
 }
+	
+	
+
