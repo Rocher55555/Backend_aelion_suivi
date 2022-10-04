@@ -8,9 +8,7 @@ import com.aelion.suivi.entities.UserEntity;
 
 @Service
 public class UserService {
-	
 	private ArrayList<UserEntity> list = new ArrayList<>();
-	
 	public UserService() {
 		UserEntity user = new UserEntity();
 		user.setId(1L);
