@@ -2,32 +2,34 @@ package com.aelion.suivi.services;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.aelion.suivi.entities.UserEntity;
+import com.aelion.suivi.repositories.UserRepository;
 
 @Service
 public class UserService {
-	private ArrayList<UserEntity> list = new ArrayList<>();
-	public UserService() {
-		UserEntity user = new UserEntity();
-		user.setId(1L);
-		user.setEmail("jla.web@gmail.com");
-		
-		this.list.add(user);
-	}
-	public ResponseEntity checkEmail(String email) {
-		System.out.println("Reçu :" + email);
-		
-		// Le vrai job commence ici ...trouver l'adresse mail passée en paramettre
-		// dans la liste connue des users
-		for (UserEntity user : this.list) {
-			if(user.getEmail().equals(email)) {
-				//ok,j'ai trouvé
-				return ResponseEntity.ok(" user with" + email + " was found");
-			}
-		}
-		return ResponseEntity.notFound().build();
-	}
+	
+	
+	@Autowired
+	private UserRepository repository;
 
+	/**
+	 * 
+	 * @param email
+	 * @return a Response (http response 200 or 404)
+	 */
+	public ResponseEntity checkEmail(String email) {
+		//System.out.println("Service Reçu :" + email);
+		UserEntity userEntity = this.repository.userByMail(email);
+		if (userEntity == null) {
+			return ResponseEntity.notFound().build(); 
+		}
+		return ResponseEntity.ok().build();
+	}
 }
+		
+		
+	

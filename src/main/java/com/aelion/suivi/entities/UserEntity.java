@@ -1,7 +1,25 @@
 package com.aelion.suivi.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * @author Aelion
+ * POJO: Plain Old Java Object
+ */
+
+@Entity
+@Table(name="user")
 public class UserEntity {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique=true, nullable=false)
 	private String email;
 	
 	/**
@@ -10,12 +28,7 @@ public class UserEntity {
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	/**
 	 * @return the email
 	 */
@@ -28,5 +41,4 @@ public class UserEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }

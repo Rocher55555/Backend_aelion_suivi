@@ -20,7 +20,7 @@ public class UserControler {
 	@GetMapping("/{email}")
 	@CrossOrigin
 	public ResponseEntity checkEmail(@PathVariable() String email) {
-		System.out.println("Reçu :" + email);
+		//System.out.println("Reçu :" + email);
 		return this.userService.checkEmail(email);
 	}
 }
