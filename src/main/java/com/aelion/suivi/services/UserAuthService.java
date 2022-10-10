@@ -19,7 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.aelion.suivi.entities.UserEntity;
-import com.aelion.suivi.entities.UserRoleEntity;
+import com.aelion.suivi.entities.UserRole;
 import com.aelion.suivi.helpers.Request;
 import com.aelion.suivi.repositories.UserRepository;
 import com.aelion.suivi.repositories.UserRoleRepository;
@@ -49,7 +49,7 @@ public class UserAuthService implements UserDetailsService {
 		}
 		UserEntity user = oUser.get();
 		
-		List<UserRoleEntity> roles = user.getUserRoles()
+		List<UserRole> roles = user.getUserRoles()
 				.stream()
 				.collect(Collectors.toList());
 		
@@ -75,7 +75,7 @@ public class UserAuthService implements UserDetailsService {
 		user.setUserPass(this.passwordEncoder.encode(request.getUserPass()));
 		
 		user.setUserRoles(request.getRoles().stream().map(r -> {
-			UserRoleEntity userRole = new UserRoleEntity();
+			UserRole userRole = new UserRole();
 			userRole.setRole(r);
 			roleRepository.save(userRole);
 			return userRole;

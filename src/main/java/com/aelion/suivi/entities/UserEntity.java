@@ -35,7 +35,7 @@ public class UserEntity {
     		joinColumns = @JoinColumn(name = "user_id"),
     		inverseJoinColumns = @JoinColumn(name = "userRole_id")
     		)
-	private Set<UserRoleEntity> userRoles;
+	private Set<UserRole> userRoles;
 	
 	/**
 	 * @return the id
@@ -74,14 +74,14 @@ public class UserEntity {
 	/**
 	 * @return the userRoles
 	 */
-	public Set<UserRoleEntity> getUserRoles() {
+	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
 
 	/**
 	 * @param userRoles the userRoles to set
 	 */
-	public void setUserRoles(Set<UserRoleEntity> userRoles) {
+	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
 
