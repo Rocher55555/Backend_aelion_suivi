@@ -37,19 +37,20 @@ public class POEController {
 
 	
 	@GetMapping("/hello")
+	@CrossOrigin()
 	public ResponseEntity<String> greetings(){
 		return ResponseEntity.ok("Hey springBoot");
 	}
 	 
 	 @GetMapping()
-	 @CrossOrigin
+	 @CrossOrigin()
 	 public List<POEEntity> findAll(){
 		 return this.poeService.findAll();
 	 }
 	 
 	 
 	 @GetMapping("/{id}")
-	 @CrossOrigin
+	 @CrossOrigin()
 	 public ResponseEntity<?> findOne(@PathVariable int id) throws Exception{
 		 try {
 			return ResponseEntity.ok(this.poeService.getOne((long) id));
@@ -62,7 +63,7 @@ public class POEController {
 	
 
 	@PostMapping()
-	@CrossOrigin
+	@CrossOrigin()
 	public POEEntity add(@RequestBody POEEntity poe) {
 		return this.poeService.add(poe);
 	}
@@ -70,7 +71,7 @@ public class POEController {
 
 
 	@DeleteMapping("/{id}")
-	@CrossOrigin
+	@CrossOrigin()
     public ResponseEntity<?> delete(@PathVariable int id) {
         try {
             this.poeService.delete((long)id);
@@ -82,7 +83,8 @@ public class POEController {
         }
     }
 
-	@PutMapping()	
+	@PutMapping()
+	@CrossOrigin()
 	public ResponseEntity<?> update(@RequestBody POEEntity poe) {
 		this.poeService.update(poe);
 		return ResponseEntity.noContent().build();
@@ -90,6 +92,7 @@ public class POEController {
 	
 	
 	@GetMapping("/shortlist")
+	@CrossOrigin()
 	public List<POEShortListDto>shortList(){
 		return this.poeService.shortList();
 	}

@@ -2,8 +2,12 @@ eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.codegen.methodParameters=generate
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=11
 org.eclipse.jdt.core.compiler.compliance=11
+<<<<<<< HEAD
 org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
 org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
 org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=ignore
+=======
+org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+>>>>>>> d8e5340fdc04a0f7dc8f5667572ad56ffb16c4ec
 org.eclipse.jdt.core.compiler.release=disabled
 org.eclipse.jdt.core.compiler.source=11

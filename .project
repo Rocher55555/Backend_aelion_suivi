@@ -6,12 +6,24 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+<<<<<<< HEAD
+=======
+			<name>org.eclipse.wst.common.project.facet.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+>>>>>>> d8e5340fdc04a0f7dc8f5667572ad56ffb16c4ec
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+<<<<<<< HEAD
 			<name>org.eclipse.m2e.core.maven2Builder</name>
+=======
+			<name>org.springframework.ide.eclipse.core.springbuilder</name>
+>>>>>>> d8e5340fdc04a0f7dc8f5667572ad56ffb16c4ec
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -20,9 +32,23 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+=======
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.springframework.ide.eclipse.core.springnature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+>>>>>>> d8e5340fdc04a0f7dc8f5667572ad56ffb16c4ec
 	</natures>
 </projectDescription>
