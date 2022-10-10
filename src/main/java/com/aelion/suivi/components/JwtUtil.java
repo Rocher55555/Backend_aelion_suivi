@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.aelion.suivi.components;
 
 import java.security.Key;
@@ -8,19 +11,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-import com.aelion.suivi.services.exception.JwtTokenMissingException;
 import com.aelion.suivi.services.exception.JwtTokenMalformedException;
+import com.aelion.suivi.services.exception.JwtTokenMissingException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.SignatureAlgorithm;
 
-
+/**
+ * @author Aelion
+ *
+ */
 @Component
 public class JwtUtil {
+	
 	@Value("${jwt.secret}")
 	private String jwtSecret;
 	
@@ -67,7 +74,6 @@ public class JwtUtil {
 			Jwts.parserBuilder().setSigningKey(this.jwtSecret).build().parseClaimsJws(token);
 			
 		} catch (MalformedJwtException e) {
-			
 			throw new JwtTokenMalformedException("Invalid JWT Token");
 		} catch (IllegalArgumentException e) {
 			throw new JwtTokenMissingException("JWT claims string is empty");
@@ -78,4 +84,5 @@ public class JwtUtil {
 		byte[] keyBytes = Decoders.BASE64.decode(this.jwtSecret);
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
+
 }

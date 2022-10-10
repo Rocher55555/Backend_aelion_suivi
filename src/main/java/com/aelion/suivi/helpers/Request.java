@@ -1,7 +1,14 @@
+/**
+ * 
+ */
 package com.aelion.suivi.helpers;
 
 import java.util.List;
 
+/**
+ * @author Aelion
+ *
+ */
 public class Request {
 	private String userName;
 	private String userPass;

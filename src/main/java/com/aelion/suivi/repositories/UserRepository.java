@@ -1,21 +1,20 @@
+/**
+ * 
+ */
 package com.aelion.suivi.repositories;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aelion.suivi.entities.UserEntity;
 
-public interface UserRepository extends CrudRepository<UserEntity, Long> {
+/**
+ * @author Aelion
+ *
+ */
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	
-	//String internByMail = "jean@hotmail.fr";
+	Optional<UserEntity> findByUserName(String userName);
 
-	/**
-	 * Je travail avec l'entity userEntity et l'atribut mail
-	 * @param email
-	 * @return
-	 */
-	
-	@Query("SELECT u FROM UserEntity u WHERE u.email = :email")
-	public UserEntity userByMail(@Param("email") String email);
 }

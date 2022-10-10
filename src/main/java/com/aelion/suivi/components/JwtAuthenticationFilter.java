@@ -1,7 +1,7 @@
+/**
+ * 
+ */
 package com.aelion.suivi.components;
-
-
-import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,11 +16,21 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.aelion.suivi.services.exception.JwtTokenMissingException;
 import com.aelion.suivi.services.UserAuthService;
+import com.aelion.suivi.services.exception.JwtTokenMissingException;
 
+import io.jsonwebtoken.io.IOException;
+
+
+
+
+/**
+ * @author Aelion
+ *
+ */
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter{
+
 	@Autowired
 	private JwtUtil jwtUtil;
 	
@@ -60,7 +70,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 		}
 		
-		filterChain.doFilter(request, response);
+		try {
+			filterChain.doFilter(request, response);
+		} catch (java.io.IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }

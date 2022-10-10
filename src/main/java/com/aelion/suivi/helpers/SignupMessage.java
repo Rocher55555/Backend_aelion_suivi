@@ -1,7 +1,14 @@
+/**
+ * 
+ */
 package com.aelion.suivi.helpers;
 
-
+/**
+ * @author Aelion
+ *
+ */
 public class SignupMessage {
+	
 	private String message;
 	
 	public SignupMessage(String message) {

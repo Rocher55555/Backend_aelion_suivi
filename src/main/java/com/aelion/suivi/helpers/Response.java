@@ -1,11 +1,17 @@
+/**
+ * 
+ */
 package com.aelion.suivi.helpers;
-
 
 import java.util.List;
 
+/**
+ * @author Aelion
+ *
+ */
 public class Response {
-	private String token;
 	
+	private String token;
 	private List<String> roles;
 	
 	public void setToken(String token) {

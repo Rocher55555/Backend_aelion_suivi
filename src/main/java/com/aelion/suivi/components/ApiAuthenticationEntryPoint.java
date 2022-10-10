@@ -1,5 +1,7 @@
+/**
+ * 
+ */
 package com.aelion.suivi.components;
-
 
 import java.io.IOException;
 
@@ -11,10 +13,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+
+
 /**
- * 
  * @author Aelion
- * return 401 status
+ *
  */
 @Component
 public class ApiAuthenticationEntryPoint implements AuthenticationEntryPoint {
@@ -23,8 +26,6 @@ public class ApiAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	public void commence(	HttpServletRequest request, 
 							HttpServletResponse response,
 							AuthenticationException authException) throws IOException, ServletException {
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
-
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
 	}
-
 }
