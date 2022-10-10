@@ -1,5 +1,7 @@
 package com.aelion.suivi.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class UserRole {
 	private Long id;
 	private String role;
 	@ManyToMany()
-	private UserAuthEntity user;
+	private Set<UserAuthEntity> users;
 	
 	/**
 	 * @return the role
@@ -32,14 +34,14 @@ public class UserRole {
 	/**
 	 * @return the user
 	 */
-	public UserAuthEntity getUser() {
-		return user;
+	public Set<UserAuthEntity> getUsers() {
+		return users;
 	}
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(UserAuthEntity user) {
-		this.user = user;
+	public void setUsers(Set<UserAuthEntity> user) {
+		this.users = users;
 	}
 	/**
 	 * @return the id

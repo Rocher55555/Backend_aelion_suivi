@@ -1,3 +1,4 @@
+
 package com.aelion.suivi.entities;
 
 import java.util.Set;
@@ -18,10 +19,10 @@ public class UserAuthEntity {
 	private Long id;
 	@Column(unique=true, nullable=false)
 	private String userName;
-	@Column(unique=true, nullable=false)
+	@Column(nullable=false)
 	private String userPass;
 	@ManyToMany()
-	private Set<UserRole> userRole;
+	private Set<UserRole> userRoles;
 	
 	/**
 	 * @return the id
@@ -61,15 +62,15 @@ public class UserAuthEntity {
 	/**
 	 * @return the userRole
 	 */
-	public Set<UserRole> getUserRole() {
-		return userRole;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 	
 	/**
 	 * @param userRole the userRole to set
 	 */
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setUserRoles(Set<UserRole> userRole) {
+		this.userRoles = userRole;
 	}
 	
 
