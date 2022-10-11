@@ -54,7 +54,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring().antMatchers(
 				"/user/signin",
 				"/user/signup",
-				"/user/secret"
+				"/user/secret",
+				"/user/{name}"
 			);
 	}
 	

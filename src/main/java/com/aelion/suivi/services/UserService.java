@@ -29,6 +29,19 @@ public class UserService {
 		}
 		return ResponseEntity.ok().build();
 	}
+
+	/**
+	 * Use for forgotten password
+	 * @param name
+	 * @return a Response
+	 */
+	public ResponseEntity checkUserName(String name) {
+		UserEntity userEntity = this.repository.userByName(name);
+		if (userEntity == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok().build();
+	}
 }
 		
 		

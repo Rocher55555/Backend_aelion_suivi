@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import com.aelion.suivi.helpers.Request;
 import com.aelion.suivi.helpers.Response;
 import com.aelion.suivi.helpers.SignupMessage;
 import com.aelion.suivi.services.UserAuthService;
+import com.aelion.suivi.services.UserService;
 import com.aelion.suivi.services.exception.DisabledUserException;
 import com.aelion.suivi.services.exception.InvalidUserCredentialsException;
 
@@ -38,9 +40,9 @@ import com.aelion.suivi.services.exception.InvalidUserCredentialsException;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(value="http://localhost:4200")
+@CrossOrigin//(value="http://localhost:4200")
 public class UserController {
-
+/*
 	@Autowired
 	private JwtUtil jwtUtil;
 	
@@ -49,7 +51,10 @@ public class UserController {
 	
 	@Autowired 
 	private AuthenticationManager authenticationManager;
-	
+*/	
+	@Autowired
+	UserService userService;
+/*	
 	@GetMapping("/secret")
 	public String generateSafeSecret() {
 		SecureRandom random = new SecureRandom();
@@ -105,5 +110,13 @@ public class UserController {
 		this.userAuthService.saveUser(request);
 		SignupMessage message = new SignupMessage("User was successfully registred");
 		return new ResponseEntity<SignupMessage>(message, HttpStatus.OK);
+	}
+	*/
+	
+	@GetMapping("/{name}")
+	@CrossOrigin
+	public ResponseEntity checkUserName(@PathVariable() String name) {
+		//System.out.println("Reçu :" + email);
+		return this.userService.checkUserName(name);
 	}
 }

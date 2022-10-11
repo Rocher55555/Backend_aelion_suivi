@@ -65,7 +65,7 @@ public class UserAuthService implements UserDetailsService {
 	
 	public void saveUser(Request request) {
 		Optional<UserEntity> oUser = this.userRepository.findByUserName(request.getUserName());
-		
+
 		if (oUser.isPresent()) {
 			throw new RuntimeException("User already exists");
 		}
