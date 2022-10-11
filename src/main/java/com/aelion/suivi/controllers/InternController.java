@@ -78,12 +78,12 @@ public class InternController {
 	 * @param InternInputDto
 	 * @return 201 http-status
 	 */
-	@PostMapping()
+	
 	@CrossOrigin()
-	public InternEntity add(@RequestBody InternEntity intern) {
+	public InternEntity addIntern(@RequestBody InternEntity intern) {
 		return this.internService.add(intern);
 	}
-
+	@PostMapping()
 	@CrossOrigin()
 	public InternEntity add(@RequestBody InternInputDto intern) {
 	return this.internService.addInternAndPoes(intern);	
