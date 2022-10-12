@@ -84,7 +84,7 @@ public class POEService implements ICrud<POEEntity> {
 	}
 
 	
-	// présente seulement pour respecter Icrud
+	// présente seulement pour respecter Icrud/ pour supprimer l'intern?
 	@Override
 	public void delete(POEEntity t) {
 	

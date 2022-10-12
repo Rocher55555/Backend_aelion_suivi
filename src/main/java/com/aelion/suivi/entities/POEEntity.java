@@ -43,7 +43,6 @@ public class POEEntity {
     		joinColumns = @JoinColumn(name = "poe_id"),
     		inverseJoinColumns = @JoinColumn(name = "intern_id")
     		)
-	
     private List<InternEntity> interns = new ArrayList<>();
 	
 	//je prends la list d'interns et j'ajoute un intern
@@ -51,8 +50,8 @@ public class POEEntity {
 		this.interns.add(intern);
 	}
 	
-	/**
-	 * @return nothig
+	/**to cancel an intern
+	 * @return 
 	 */
 	public void deleteIntern(InternEntity intern) {
 		this.interns.remove(intern);
