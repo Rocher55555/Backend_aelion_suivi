@@ -51,7 +51,7 @@ public class POEEntity {
 	}
 	
 	/**to cancel an intern
-	 * @return 
+	 * @return nothing
 	 */
 	public void deleteIntern(InternEntity intern) {
 		this.interns.remove(intern);
