@@ -26,7 +26,6 @@ public class InternEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
 	private String firstname;
 	private Date birthDate;
@@ -37,6 +36,8 @@ public class InternEntity {
 	
 	@OneToMany(mappedBy="intern")   // intern attribute of InternEvaluation class
 	private List<InternEvaluationEntity> evaluations = new ArrayList<>();
+	
+	
 	
 	/**
 	 * @return the id

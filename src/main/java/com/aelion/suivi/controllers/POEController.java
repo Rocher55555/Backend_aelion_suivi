@@ -96,8 +96,5 @@ public class POEController {
 	public List<POEShortListDto>shortList(){
 		return this.poeService.shortList();
 	}
-		
-
-	
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,7 @@ public class InternService implements ICrud<InternEntity> {
 	@Autowired
 	private POERepository poeRepository;
 	
+	
 	/**
 	 * INSERT INNTO intern (name, firstname, ..., address) VALUES(...);
 	 */
@@ -53,21 +55,55 @@ public class InternService implements ICrud<InternEntity> {
 		this.repository.save(intern);
 		
 	}
-
+	
+	/**
+	 * Delete, firstly an intern present in a POE, and after recording the information, delete the intern
+	 * Permit to remove the relationship with InternToPoe
+	 * 
+	 * @return a List of InternEntity
+	 */
 	@Override
 	public void delete(InternEntity intern) {
+		//get poes
+		ArrayList<POEEntity> poes = (ArrayList<POEEntity>) this.poeRepository.findAll();
+		for (POEEntity poe: poes) {
+			List<InternEntity> interns = new ArrayList<>();
+			poe.getInterns().forEach(internFromPoe -> {
+				interns.add(internFromPoe);				
+			});
+			//work on the copy
+			for(InternEntity internFromPoe: interns) {
+				if ( internFromPoe.getId() == intern.getId()) {
+					// delete on the original : poe!
+					poe.deleteIntern(internFromPoe);
+					this.poeRepository.save(poe);
+				}
+			}
+		}
+		//after POE's loop
 		this.repository.delete(intern);
 	}
 
+	
+	/**
+	 * Find All Intern
+	 * @return a List of InternEntity
+	 */
 	@Override
 	public List<InternEntity> findAll() {		
 		return (List<InternEntity>) this.repository.findAll();
 	}
 
+	
+	/**
+	 * Find One Intern
+	 * @return an InternEntity
+	 */
 	@Override
 	public Optional<InternEntity> findOne(Long id) {
 		return this.repository.findById(id);
 	}
+	
 	
 	/**
 	 * 
@@ -91,37 +127,12 @@ public class InternService implements ICrud<InternEntity> {
 	public List<InternEntity> findByName(String name){
 		return this.repository.findByName(name);
 	}
-	
 
 	
 	public List<InternEntity> findByFirstname(String firstname){
 		return this.repository.findByFirstname(firstname);
 	}
 	
-	/*
-	public Optional<InternEntity> internByMail(String email) {
-		return Optional.ofNullable(this.repository.internByMail(email));
-	}
-	*/
-	
-	/* FAUX DA CANCELLARE
-	public ResponseEntity<?> internByMail(String email) {
-		Optional<InternEntity> oInternEntity = this.repository.internByMail(email);
-		if(oInternEntity.isPresent()) {
-			return ResponseEntity.ok(oInternEntity.get());
-		}
-		return (ResponseEntity<?>)ResponseEntity.notFound().build();	
-		}
-	*/
-	
-	/*public ResponseEntity<?> internByMail(String email) {
-		InternEntity entity = this.repository.internByMail(email);
-		
-		if(entity == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(entity);	
-		}*/
 	
 	public ResponseEntity<?> internByMail(String email) {
 		ResponseEntity response = null;
@@ -134,7 +145,6 @@ public class InternService implements ICrud<InternEntity> {
 		
 		return new ResponseEntity(HttpStatus.FORBIDDEN);
 		}
-
 
 	
 		public InternEntity addInternAndPoes(InternInputDto internDto) {
@@ -163,33 +173,6 @@ public class InternService implements ICrud<InternEntity> {
 			});
 			return intern;
 		}
-	
-		//delete
-		/*public void deleteInternAndPoes(InternInputDto internDto) {
-
-			InternEntity intern = this.repository.deleteById(internDto.id);
-			
-			// delete intern
-			this.repository.delete(intern); 
-			
-			// delete POEs with the new Intern
-			//je prends la list poes d'internDto , je la parcours
-			internDto.poes.forEach(inputPoe -> {
-				Optional<POEEntity> oPoe = this.poeRepository.findById(inputPoe.getId());
-				//si poe cochéee est trouvée via l'id de la BD
-				if (oPoe.isPresent()) {
-					POEEntity poe = oPoe.get();
-					//...alors j'ajoute l'intern à la poe et je les 'save'
-					poe.addIntern(intern);
-					this.poeRepository.save(poe);
-				}
-			});
-			//return intern;
-		}*/
-
-
-	
-
-	
+		
 	}
 	

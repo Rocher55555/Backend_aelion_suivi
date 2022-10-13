@@ -23,6 +23,7 @@ import com.aelion.suivi.dto.InternInputDto;
 import com.aelion.suivi.dto.InternShortListDto;
 import com.aelion.suivi.entities.InternEntity;
 import com.aelion.suivi.services.InternService;
+import com.aelion.suivi.services.POEService;
 
 /**
  * @author Aelion
@@ -35,6 +36,9 @@ public class InternController {
 	
 	@Autowired
 	private InternService internService;
+	
+	@Autowired
+	private POEService poeService;
 	
 	
 	@GetMapping("/hello")
@@ -83,13 +87,13 @@ public class InternController {
 	public InternEntity addIntern(@RequestBody InternEntity intern) {
 		return this.internService.add(intern);
 	}
+	
 	@PostMapping()
 	@CrossOrigin()
 	public InternEntity add(@RequestBody InternInputDto intern) {
 	return this.internService.addInternAndPoes(intern);	
 }
 	
-
 	
 	/**
 	 * @param 
@@ -131,22 +135,18 @@ public class InternController {
 	@GetMapping("/byfirstname/{firstname}")
 	@CrossOrigin()
 	public List<InternEntity> findByFirstname(@PathVariable String firstname){
-		return internService.findByFirstname(firstname);
+		return this.internService.findByFirstname(firstname);
 	}
 	
 	
 	//EMAIL
-	
-	
-	
-	
 	@GetMapping("/byemail")
 	@CrossOrigin
 	public ResponseEntity<?> internByMail(@RequestParam() String email) {
 		return this.internService.internByMail(email);
 	}
 	
-	/*
+/*
 	@GetMapping("byemail")
 	public ResponseEntity<?> internByMail(@RequestParam() String email) {
 		Optional<InternEntity> oInternEntity= this.internService.internByMail(email);
@@ -156,7 +156,7 @@ public class InternController {
 		return ResponseEntity.notFound().build();
 	}
 */
-	
+
 }
 	
 	

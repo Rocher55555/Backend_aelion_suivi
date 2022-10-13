@@ -31,7 +31,6 @@ public class POEService implements ICrud<POEEntity> {
 	@Override
 	public POEEntity add(POEEntity poe) {
 		return this.repository.save(poe);
-
 	}
 
 	@Override
@@ -83,13 +82,13 @@ public class POEService implements ICrud<POEEntity> {
 		}
 	}
 
-	
-	// présente seulement pour respecter Icrud/ pour supprimer l'intern?
+	// présente seulement pour respecter Icrud
 	@Override
 	public void delete(POEEntity t) {
-	
+		// TODO Auto-generated method stub	
 	}
 	
+
 	
 	/**
 	 * 
@@ -107,7 +106,6 @@ public class POEService implements ICrud<POEEntity> {
 		
 		// for (const entity : InternEntity of itEntity)
 	}
-
 
 
 }
