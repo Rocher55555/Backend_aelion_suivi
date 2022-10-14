@@ -36,7 +36,7 @@ public class POEEntity {
 	private POETypeEntity poeType;
 	
 
-	//creation de table intern-to-poe
+	//creation of intern-to-poe table
 	@ManyToMany()
     @JoinTable(
     		name = "interns_to_poes",
@@ -72,7 +72,6 @@ public class POEEntity {
 		this.interns = interns;
 	}
 
-
 	/**
 	 * @return the id
 	 */
@@ -80,7 +79,6 @@ public class POEEntity {
 		return id;
 	}
 	
-
 	/**
 	 * @return the name
 	 */
@@ -94,7 +92,6 @@ public class POEEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 	/**
 	 * @return the beginDate
@@ -110,14 +107,12 @@ public class POEEntity {
 		this.beginDate = beginDate;
 	}
 
-
 	/**
 	 * @return the endDate
 	 */
 	public Date getEndDate() {
 		return endDate;
 	}
-
 
 	/**
 	 * @param endDate the endDate to set
@@ -126,9 +121,7 @@ public class POEEntity {
 		this.endDate = endDate;
 	}
 
-	
 	//POE ENTITY GETTERS AND SETTERS
-
 	/**
 	 * @return the poeType
 	 */
@@ -136,15 +129,11 @@ public class POEEntity {
 		return poeType;
 	}
 
-
 	/**
 	 * @param poeType the poeType to set
 	 */
 	public void setPoeType(POETypeEntity poeType) {
 		this.poeType = poeType;
 	}
-	
-
-	
 	
 }
